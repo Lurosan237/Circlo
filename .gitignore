@@ -1,0 +1,107 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+/build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+/lib/
+/lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+.nox/
+.hypothesis/
+
+# Virtual environments
+venv/
+ENV/
+env/
+.venv/
+
+# IDE
+.idea/
+*.swp
+*.swo
+*~
+.vscode/settings.json
+
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# Flutter/Dart
+mobile/.dart_tool/
+mobile/.packages
+mobile/.pub-cache/
+mobile/.pub/
+mobile/build/
+mobile/*.iml
+mobile/.metadata
+
+# iOS
+mobile/ios/Pods/
+mobile/ios/.symlinks/
+mobile/ios/Flutter/Flutter.framework
+mobile/ios/Flutter/Flutter.podspec
+mobile/ios/Flutter/Generated.xcconfig
+mobile/ios/Flutter/app.flx
+mobile/ios/Flutter/app.zip
+mobile/ios/Flutter/flutter_assets/
+mobile/ios/ServiceDefinitions.json
+mobile/ios/Runner/GeneratedPluginRegistrant.*
+
+# Android
+mobile/android/.gradle/
+mobile/android/local.properties
+mobile/android/*.iml
+mobile/android/key.properties
+mobile/android/**/*.keystore
+
+# macOS
+.DS_Store
+*.dmg
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Docker
+docker-compose.override.yml
+
+# Database
+*.db
+*.sqlite3
+
+# Logs
+*.log
+logs/
+
+# Coverage
+coverage/
+*.lcov
+
+# Firebase
+google-services.json
+GoogleService-Info.plist
+firebase_options.dart
+mobile/.flutter-plugins
+mobile/.flutter-plugins-dependencies
+mobile/ios/Flutter/ephemeral/
+mobile/ios/Flutter/flutter_export_environment.sh
+mobile/android/app/src/main/java/io/flutter/plugins/GeneratedPluginRegistrant.java

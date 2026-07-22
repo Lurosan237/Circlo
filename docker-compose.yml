@@ -1,0 +1,59 @@
+version: '3.8'
+
+services:
+  # PostgreSQL Database
+  db:
+    image: postgres:16-alpine
+    container_name: circlo_db
+    environment:
+      POSTGRES_USER: circlo
+      POSTGRES_PASSWORD: circlo_secret
+      POSTGRES_DB: circlo_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./database/init.sql:/docker-entrypoint-initdb.d/01-init.sql
+      - ./database/rls_policies.sql:/docker-entrypoint-initdb.d/02-rls.sql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U circlo -d circlo_db"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # FastAPI Backend
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: circlo_backend
+    environment:
+      DATABASE_URL: postgresql+asyncpg://circlo:circlo_secret@db:5432/circlo_db
+      JWT_SECRET_KEY: your-super-secret-key-change-in-production
+      DEBUG: "true"
+    ports:
+      - "8000:8000"
+    depends_on:
+      db:
+        condition: service_healthy
+    volumes:
+      - ./backend:/app
+    command: uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
+
+  # Redis for caching and rate limiting (optional)
+  redis:
+    image: redis:7-alpine
+    container_name: circlo_redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  postgres_data:
+  redis_data:

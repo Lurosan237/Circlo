@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Circlo - Law Enforcement Portal</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="app">
+        <!-- Login Section -->
+        <div id="login-section" class="section">
+            <div class="login-container">
+                <div class="logo">
+                    <h1>🔒 Circlo</h1>
+                    <p>Law Enforcement Portal</p>
+                </div>
+                <form id="login-form" class="form">
+                    <div class="form-group">
+                        <label for="email">Official Email</label>
+                        <input type="email" id="email" name="email" required placeholder="officer@department.gov">
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" name="password" required placeholder="Enter password">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Sign In</button>
+                    <div id="login-error" class="error-message hidden"></div>
+                </form>
+                <p class="notice">
+                    <strong>Notice:</strong> This portal is for authorized law enforcement personnel only. 
+                    All access is logged and monitored.
+                </p>
+            </div>
+        </div>
+
+        <!-- Dashboard Section -->
+        <div id="dashboard-section" class="section hidden">
+            <header class="header">
+                <div class="header-left">
+                    <h1>🔒 Circlo Law Enforcement Portal</h1>
+                </div>
+                <div class="header-right">
+                    <span id="officer-info"></span>
+                    <button id="logout-btn" class="btn btn-secondary">Logout</button>
+                </div>
+            </header>
+
+            <main class="main-content">
+                <!-- Navigation Tabs -->
+                <nav class="tabs">
+                    <button class="tab active" data-tab="escalated">Escalated Cases</button>
+                    <button class="tab" data-tab="my-cases">My Cases</button>
+                    <button class="tab" data-tab="audit">Audit Log</button>
+                </nav>
+
+                <!-- Escalated Cases Tab -->
+                <div id="escalated-tab" class="tab-content active">
+                    <div class="section-header">
+                        <h2>Escalated Cases</h2>
+                        <p>Cases escalated to Professional Circle level requiring law enforcement attention</p>
+                    </div>
+                    <div id="escalated-cases-list" class="cases-list">
+                        <div class="loading">Loading cases...</div>
+                    </div>
+                </div>
+
+                <!-- My Cases Tab -->
+                <div id="my-cases-tab" class="tab-content hidden">
+                    <div class="section-header">
+                        <h2>My Cases</h2>
+                        <p>Cases you have been granted access to</p>
+                    </div>
+                    <div id="my-cases-list" class="cases-list">
+                        <div class="loading">Loading cases...</div>
+                    </div>
+                </div>
+
+                <!-- Audit Log Tab -->
+                <div id="audit-tab" class="tab-content hidden">
+                    <div class="section-header">
+                        <h2>Audit Log</h2>
+                        <p>Your access history and actions</p>
+                    </div>
+                    <div id="audit-log-list" class="audit-list">
+                        <div class="loading">Loading audit log...</div>
+                    </div>
+                </div>
+            </main>
+        </div>
+
+        <!-- Case Detail Modal -->
+        <div id="case-modal" class="modal hidden">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>Case Details</h2>
+                    <button class="close-btn" onclick="closeModal()">&times;</button>
+                </div>
+                <div id="case-detail-content" class="modal-body">
+                    <div class="loading">Loading case details...</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Access Request Modal -->
+        <div id="access-modal" class="modal hidden">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>Request Case Access</h2>
+                    <button class="close-btn" onclick="closeAccessModal()">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <form id="access-request-form" class="form">
+                        <input type="hidden" id="access-case-id">
+                        <div class="form-group">
+                            <label for="access-reason">Reason for Access Request</label>
+                            <textarea id="access-reason" name="reason" required 
+                                placeholder="Provide official reason for requesting access to this case..."></textarea>
+                        </div>
+                        <div class="form-actions">
+                            <button type="button" class="btn btn-secondary" onclick="closeAccessModal()">Cancel</button>
+                            <button type="submit" class="btn btn-primary">Submit Request</button>
+                        </div>
+                        <div id="access-error" class="error-message hidden"></div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
